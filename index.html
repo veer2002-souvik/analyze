@@ -1,74 +1,116 @@
-To create a simple website prototype that takes input for the number of trees to be cut, location, average square feet, and the number of trees cut, and then calculates the number of trees given permission and the number cut illegally, as well as allowing the user to select a location from a dropdown of 5 places in the Western Ghats, you can use HTML, CSS, and JavaScript. Here's a basic example of how you can implement this:
-
-```html
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Tree Cutting Permit</title>
+    <title>Tree Cutting Tracker</title>
     <style>
-        /* Add some basic styling */
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            background-color: #f0f0f0;
+            text-align: center;
+            margin: 0;
+            padding: 0;
         }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
         label {
+            font-weight: bold;
             display: block;
-            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        h2 {
+            color: #333;
+            margin-top: 20px;
+        }
+
+        #output {
+            text-align: left;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            margin: 0 auto;
         }
     </style>
 </head>
 <body>
-    <h1>Tree Cutting Permit</h1>
-    
+    <h1>Tree Cutting Tracker</h1>
     <form id="treeCuttingForm">
-        <label for="numTreesToCut">Number of Trees to Be Cut:</label>
-        <input type="number" id="numTreesToCut" required>
+        <label for="numTrees">Number of Trees to be Cut (Permission Granted):</label>
+        <input type="number" id="numTrees" name="numTrees" required><br><br>
 
-        <label for="location">Location (Select from Western Ghats):</label>
-        <select id="location">
-            <option value="Coonoor">Coonoor</option>
-            <!-- Add other Western Ghats locations here -->
-        </select>
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required><br><br>
 
         <label for="avgSqFeet">Average Square Feet per Tree:</label>
-        <input type="number" id="avgSqFeet" required>
+        <input type="number" id="avgSqFeet" name="avgSqFeet" required><br><br>
 
         <label for="numTreesCut">Number of Trees Cut:</label>
-        <input type="number" id="numTreesCut" required>
+        <input type="number" id="numTreesCut" name="numTreesCut" required><br><br>
 
-        <button type="button" onclick="calculatePermits()">Calculate</button>
+        <input type="submit" value="Calculate">
     </form>
 
-    <div id="results" style="display: none;">
-        <h2>Results:</h2>
-        <p>Number of Trees Given Permission: <span id="numPermission"></span></p>
-        <p>Number of Trees Cut Illegally: <span id="numIllegally"></span></p>
-        <p>Location: <span id="selectedLocation"></span></p>
-    </div>
+    <h2>Output:</h2>
+    <p id="output"></p>
 
     <script>
-        function calculatePermits() {
-            // Get input values
-            const numTreesToCut = parseInt(document.getElementById('numTreesToCut').value);
-            const avgSqFeet = parseInt(document.getElementById('avgSqFeet').value);
-            const numTreesCut = parseInt(document.getElementById('numTreesCut').value);
-            const selectedLocation = document.getElementById('location').value;
+        document.getElementById("treeCuttingForm").addEventListener("submit", function (event) {
+            event.preventDefault();
 
-            // Calculate results
-            const numPermission = Math.min(numTreesToCut, numTreesCut);
-            const numIllegally = Math.max(numTreesCut - numTreesToCut, 0);
+            // Get user inputs
+            const numTreesPermission = parseInt(document.getElementById("numTrees").value);
+            const location = document.getElementById("location").value;
+            const avgSqFeet = parseFloat(document.getElementById("avgSqFeet").value);
+            const numTreesCut = parseInt(document.getElementById("numTreesCut").value);
 
-            // Display results
-            document.getElementById('numPermission').textContent = numPermission;
-            document.getElementById('numIllegally').textContent = numIllegally;
-            document.getElementById('selectedLocation').textContent = selectedLocation;
+            // Calculate illegally cut trees
+            const illegallyCut = numTreesCut - numTreesPermission;
 
-            // Show results
-            document.getElementById('results').style.display = 'block';
-        }
+            // Display the output
+            const output = `Number of Trees Cut: ${numTreesCut}<br>
+                            Number of Trees Given Permission: ${numTreesPermission}<br>
+                            Number of Trees Cut Illegally: ${illegallyCut}<br>
+                            Location: ${location}`;
+
+            document.getElementById("output").innerHTML = output;
+        });
     </script>
 </body>
 </html>
-```
-
-This code creates a basic HTML form with input fields for the number of trees to cut, location, average square feet, and the number of trees cut. When the "Calculate" button is clicked, it calculates the number of trees given permission and the number cut illegally, as well as displaying the selected location from the dropdown. The results are shown in a hidden div, which is displayed when the calculations are done. You can further enhance this prototype with additional features and styling as needed.
