@@ -1,116 +1,188 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Tree Cutting Tracker</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tree Tracking Dashboard</title>
     <style>
+        /* Common Styles */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            text-align: center;
             margin: 0;
             padding: 0;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        header {
+            background-color: #2a80b9;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
         }
 
         h1 {
-            color: #333;
+            font-size: 36px;
+            margin: 0;
         }
 
-        form {
-            background-color: #fff;
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            max-width: 400px;
-            margin: 0 auto;
-        }
-
-        label {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        input[type="text"],
-        input[type="number"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        input[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-
-        h2 {
-            color: #333;
-            margin-top: 20px;
-        }
-
-        #output {
-            text-align: left;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
             background-color: #fff;
+            border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            max-width: 400px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #2a80b9;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #1c5d8a;
+        }
+
+        .header-text {
+            font-size: 24px;
+            margin-top: 30px;
+            color: #2a80b9;
+        }
+
+        .image-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            border-radius: 5px;
+            transition: transform 0.3s;
+        }
+
+        .image-container img:hover {
+            transform: scale(1.1);
+        }
+
+        footer {
+            background-color: #2a80b9;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        /* Second Page Styles */
+        .page2-container {
+            max-width: 600px;
             margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
 <body>
-    <h1>Tree Cutting Tracker</h1>
-    <form id="treeCuttingForm">
-        <label for="numTrees">Number of Trees to be Cut (Permission Granted):</label>
-        <input type="number" id="numTrees" name="numTrees" required><br><br>
+    <header>
+        <h1>Tree Tracking Dashboard</h1>
+    </header>
 
-        <label for="location">Location:</label>
-        <input type="text" id="location" name="location" required><br><br>
+    <div class="container">
+        <p>Welcome to the Tree Tracking Dashboard. Explore our tree management efforts and initiatives.</p>
+        <a href="#page2" class="button">Go to Tree Cutting Calculator</a>
 
-        <label for="avgSqFeet">Average Square Feet per Tree:</label>
-        <input type="number" id="avgSqFeet" name="avgSqFeet" required><br><br>
+        <h2 class="header-text">Current Number of Trees</h2>
+        <p>View real-time data on the current number of trees in our care.</p>
 
-        <label for="numTreesCut">Number of Trees Cut:</label>
-        <input type="number" id="numTreesCut" name="numTreesCut" required><br><br>
+        <h2 class="header-text">Trees Planted by Us</h2>
+        <p>Discover the significant impact we've made by planting trees in various regions.</p>
 
-        <input type="submit" value="Calculate">
-    </form>
+        <h2 class="header-text">Trees Protected under Our Company</h2>
+        <p>Learn about our commitment to preserving and protecting trees under our stewardship.</p>
 
-    <h2>Output:</h2>
-    <p id="output"></p>
+        <div class="image-container">
+            <img src="X.jpeg" alt="Image 1">
+            <img src="Y.jpeg" alt="Image 2">
+        </div>
+    </div>
+
+    <div class="page2-container" id="page2" style="display: none;">
+        <header>
+            <h1>Tree Cutting Calculator</h1>
+        </header>
+
+        <div class="container">
+            <form id="treeCuttingForm">
+                <label for="numTrees">Enter the number of trees to be cut:</label>
+                <input type="number" id="numTrees" required>
+
+                <label for="location">Select a location:</label>
+                <select id="location">
+                    <option value="Nilambar">Nilambar</option>
+                    <option value="Coimbatore">Coimbatore</option>
+                    <option value="Pallakad">Pallakad</option>
+                    <option value="Pollachi">Pollachi</option>
+                    <option value="Munnar">Munnar</option>
+                </select>
+
+                <label for="avgSqFeet">Enter the average square feet per tree:</label>
+                <input type="number" id="avgSqFeet" required>
+
+                <label for="numTreesCut">Enter the number of trees cut:</label>
+                <input type="number" id="numTreesCut" required>
+
+                <label for="treeType">Select the type of tree:</label>
+                <select id="treeType">
+                    <option value="Mangifera indica">Mangifera indica</option>
+                    <option value="Artocarpus hirsutus">Artocarpus hirsutus</option>
+                    <option value="Alophyllum inophyllum">Alophyllum inophyllum</option>
+                    <option value="Pterocarpus marsupium">Pterocarpus marsupium</option>
+                </select>
+
+                <button type="button" onclick="calculate()">Calculate</button>
+            </form>
+
+            <h2>Output</h2>
+            <div class="output">
+                Number of trees given permission: <span id="permTrees"></span>
+            </div>
+            <div class="output">
+                Number of trees cut illegally: <span id="illegalTrees"></span>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2023 Tree Tracking Dashboard. All rights reserved.
+    </footer>
 
     <script>
-        document.getElementById("treeCuttingForm").addEventListener("submit", function (event) {
-            event.preventDefault();
+        function calculate() {
+            const numTrees = parseInt(document.getElementById('numTrees').value);
+            const location = document.getElementById('location').value;
+            const avgSqFeet = parseFloat(document.getElementById('avgSqFeet').value);
+            const numTreesCut = parseInt(document.getElementById('numTreesCut').value);
+            const treeType = document.getElementById('treeType').value;
 
-            // Get user inputs
-            const numTreesPermission = parseInt(document.getElementById("numTrees").value);
-            const location = document.getElementById("location").value;
-            const avgSqFeet = parseFloat(document.getElementById("avgSqFeet").value);
-            const numTreesCut = parseInt(document.getElementById("numTreesCut").value);
+            const permTrees = numTrees;
+            const illegalTrees = numTrees - numTreesCut;
 
-            // Calculate illegally cut trees
-            const illegallyCut = numTreesCut - numTreesPermission;
-
-            // Display the output
-            const output = `Number of Trees Cut: ${numTreesCut}<br>
-                            Number of Trees Given Permission: ${numTreesPermission}<br>
-                            Number of Trees Cut Illegally: ${illegallyCut}<br>
-                            Location: ${location}`;
-
-            document.getElementById("output").innerHTML = output;
-        });
+            document.getElementById('permTrees').textContent = permTrees;
+            document.getElementById('illegalTrees').textContent = illegalTrees;
+        }
     </script>
 </body>
 </html>
